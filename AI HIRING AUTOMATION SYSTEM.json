@@ -1,0 +1,2029 @@
+{
+  "name": "AI HIRING AUTOMATION SYSTEM",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 15
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "610e012a-efbc-48e8-b365-c1028a16240b",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        656,
+        16
+      ],
+      "id": "6681604e-75db-4cf7-8dda-2a7b979eab03",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "05b448df-77fe-40f1-954a-88af83e33b89",
+              "leftValue": "={{ $json['email-1'] }}",
+              "rightValue": "={{ $json['email-2'] }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "745a44eb-3494-498f-bcbf-3b3cb1d3def1",
+              "leftValue": "={{ $json['email-2'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "looseTypeValidation": "={{ false }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        816,
+        16
+      ],
+      "id": "d572ed3c-57bd-415d-a6a9-999a7921666e",
+      "name": "If"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        112
+      ],
+      "id": "cd0c2700-0d30-4575-a4ae-12e8ca156a7e",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1vmjcmlSJN4jvzmBZHCZEBuO7E7cArnWY6D9iZIiRoYQ",
+          "mode": "list",
+          "cachedResultName": "Db",
+          "cachedResultUrl": "YOUR SHEET URL"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "YOUR SHEET URL"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json.Name }}",
+            "Email": "={{ $json.Email }}",
+            "Resume": "={{ $json.Resume }}",
+            "Role": "={{ $json.Role }}",
+            "Github": "={{ $json.Github }}",
+            "Tech": "={{ $json.Tech }}",
+            "Experience": "={{ $json.Experience }}",
+            "City": "={{ $json.City }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Resume",
+              "displayName": "Resume",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Role",
+              "displayName": "Role",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Github",
+              "displayName": "Github",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tech",
+              "displayName": "Tech",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Experience",
+              "displayName": "Experience",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "City",
+              "displayName": "City",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Strengths",
+              "displayName": "Strengths",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Concerns",
+              "displayName": "Concerns",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Classification",
+              "displayName": "Classification",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Score",
+              "displayName": "Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Interview_recommendation",
+              "displayName": "Interview_recommendation",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1872,
+        -64
+      ],
+      "id": "3cb6c223-c7a1-4862-9b7a-c889bd615ec4",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "JL6cisxc9k2JBBwU",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        2400,
+        -64
+      ],
+      "id": "774d27ef-793a-4610-abcd-af94f224cef4",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1vmjcmlSJN4jvzmBZHCZEBuO7E7cArnWY6D9iZIiRoYQ",
+          "mode": "list",
+          "cachedResultName": "Db",
+          "cachedResultUrl": "YOUR SHEET URL"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "YOUR SHEET URL"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Strengths": "={{ $json.strengths[0] }},{{ $json.strengths[1] }},{{ $json.strengths[2] }}",
+            "Concerns": "={{ $json.concerns[0] }},{{ $json.concerns[1] }},{{ $json.concerns[2] }}",
+            "Classification": "={{ $json.classification }}",
+            "Score": "={{ $json.score }}",
+            "Summary": "={{ $json.summary }}",
+            "Interview_recommendation": "={{ $json.interview_recommendation }}",
+            "Status": "screened",
+            "Email": "={{ $('Append row in sheet').item.json.Email }}"
+          },
+          "matchingColumns": [
+            "Email"
+          ],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Resume",
+              "displayName": "Resume",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Role",
+              "displayName": "Role",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Github",
+              "displayName": "Github",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tech",
+              "displayName": "Tech",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Experience",
+              "displayName": "Experience",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "City",
+              "displayName": "City",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Strengths",
+              "displayName": "Strengths",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Concerns",
+              "displayName": "Concerns",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Classification",
+              "displayName": "Classification",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Score",
+              "displayName": "Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Interview_recommendation",
+              "displayName": "Interview_recommendation",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        3088,
+        -64
+      ],
+      "id": "9def3c46-eea7-49b7-bdf9-f142aac59bff",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "JL6cisxc9k2JBBwU",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3fae54c8-9b8b-4771-95f7-9cfa9d5c5d59",
+              "name": "role",
+              "value": "SWE",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        432,
+        -80
+      ],
+      "id": "137c3db5-32c1-4939-995a-b549d559b12d",
+      "name": "SWE role"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5d40aff4-f350-4673-ac24-3795443deab4",
+              "name": "role",
+              "value": "BDM",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        432,
+        96
+      ],
+      "id": "9304112c-807a-4c2f-90f4-68a2a5281f69",
+      "name": "BDM role"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1Y8-F6xiod8pCnvd2KCZmnQIu-kLO3yYBMPNZYVUhjV4",
+          "mode": "list",
+          "cachedResultName": "sheet 1",
+          "cachedResultUrl": "YOUR SHEET URL"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "YOUR SHEET URL"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "status",
+              "lookupValue": "pending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        224,
+        -80
+      ],
+      "id": "e47e2a46-5cc6-47ac-86fb-095213a995f2",
+      "name": "SWE sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "JL6cisxc9k2JBBwU",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1kGgX0rKUXhtV7oNl8DKjmd9RjNTJJQvVZp4bW62rZpA",
+          "mode": "list",
+          "cachedResultName": "sheet 2 ",
+          "cachedResultUrl": "YOUR SHEET URL"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "YOUR SHEET URL"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "status",
+              "lookupValue": "pending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        224,
+        96
+      ],
+      "id": "6ec0bc04-b464-4620-8102-831311e5a0f2",
+      "name": "BDM sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "JL6cisxc9k2JBBwU",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6f1a26d3-39b9-4069-a787-b3503a67862d",
+              "name": "Name",
+              "value": "={{ $json['name-1'] || $json['name-2'] }}",
+              "type": "string"
+            },
+            {
+              "id": "7c7ca843-6bc4-4c2b-a9fd-e76a07260e44",
+              "name": "Email",
+              "value": "={{ $json['email-1'] || $json['email-2'] }}",
+              "type": "string"
+            },
+            {
+              "id": "65f6dce4-882b-47ca-8660-7dd2b3bd15d1",
+              "name": "Resume",
+              "value": "={{ $json['resume'] || $json['cv'] }}",
+              "type": "string"
+            },
+            {
+              "id": "c8b178ae-733d-478f-98a5-08ef13856a08",
+              "name": "Role",
+              "value": "={{ $json['role'] }}",
+              "type": "string"
+            },
+            {
+              "id": "0c3b877a-ddb9-4ae7-a70d-286dba5423c7",
+              "name": "Github",
+              "value": "={{ $json['Github'] || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "f79102af-59d8-42e0-b269-12f79f65b15e",
+              "name": "Tech",
+              "value": "={{ $json['tech'] || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "8a8590b6-60a4-425f-8d04-5df8eddddece",
+              "name": "Experience",
+              "value": "={{ $json['experience'] || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "ceadd50d-6e26-4987-861f-c31078990b49",
+              "name": "City",
+              "value": "={{ $json['city'] || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "bcbfcd4d-836c-4a5b-8663-4d1da0010476",
+              "name": "Status",
+              "value": "={{ $json['status'] || json['status']}}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1040,
+        -64
+      ],
+      "id": "ce0764d0-0c0a-4504-8781-8b2066b9678e",
+      "name": "Managing db"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nreturn items.map(item => {\n  const url = item.json.resume \n           || item.json.Resume \n           || item.json['Upload Resume']\n           || item.json.resume_url \n           || '';\n           \n  let file_id = null;\n  if (url && typeof url === 'string') {\n    // Handles all Google Drive URL formats\n    const match = url.match(/\\/d\\/([a-zA-Z0-9_-]+)/)\n                || url.match(/id=([a-zA-Z0-9_-]+)/)\n                || url.match(/open\\?id=([a-zA-Z0-9_-]+)/);\n    file_id = match ? match[1] : null;\n  }\n  \n  return {\n    json: {\n      ...item.json,\n      file_id\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2064,
+        -64
+      ],
+      "id": "01fbbc5a-a4ab-42ff-8c60-b3bdc63110d9",
+      "name": "Getting File ID"
+    },
+    {
+      "parameters": {
+        "url": "=https://www.googleapis.com/drive/v3/files/{{ $json.file_id }}?alt=media",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        2240,
+        -64
+      ],
+      "id": "d79a4452-8083-4cbc-9597-377ce65c81cd",
+      "name": "Downloading file",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "W3Fjd3ZYUeBDi5dr",
+          "name": "Tavily"
+        },
+        "googleDriveOAuth2Api": {
+          "id": "TJrkhvyj9ZPbmq50",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9cef6abe-6c16-46dc-873c-7a54313733a6",
+              "name": "clean_text",
+              "value": "={{ $json.text.replace(/\\n/g, ' ').replace(/\"/g, \"'\") }}",
+              "type": "string"
+            },
+            {
+              "id": "41146503-5fa0-44b9-8410-c2a3ad999559",
+              "name": "prompt",
+              "value": "={{ 'You are a hiring evaluator. Role: ' + $json.role + '. ' + ($json.role === 'SWE' ? 'Evaluate: coding skills, technical stack, projects.' : 'Evaluate: sales experience, communication, business acumen.') + ' Resume: ' + $json.text.replace(/\\n/g, ' ').replace(/\"/g, \"\\'\") + ' Return JSON with: score (0-100), classification (strong/average/weak), summary, strengths, concerns, interview_recommendation (yes/no)' }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2560,
+        -64
+      ],
+      "id": "86078518-77f5-4204-8f46-930c84a082cf",
+      "name": "Plain text"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"llama-3.3-70b-versatile\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"{{ $json.prompt }}\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        2720,
+        -64
+      ],
+      "id": "af0e7e7f-4beb-4035-a8af-afd840b46e36",
+      "name": "AI Screening",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "66WEZggzK9b4YK3L",
+          "name": "Grok"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const results = [];\n\nfor (const item of $input.all()) {\n  const response = item.json;\n\n  if (!response.choices || !response.choices[0]) {\n    results.push({ json: { error: 'No choices in response' } });\n    continue;\n  }\n\n  const text = response.choices[0].message.content;\n  const start = text.indexOf('{');\n  const end = text.lastIndexOf('}');\n\n  if (start === -1 || end === -1) {\n    results.push({ json: { error: 'No JSON found', raw: text } });\n    continue;\n  }\n\n  const cleaned = text.substring(start, end + 1);\n\n  let result;\n  try {\n    result = JSON.parse(cleaned);\n  } catch(e) {\n    results.push({ json: { error: 'Parse failed', raw: cleaned } });\n    continue;\n  }\n\n  results.push({\n    json: {\n      email: $('Getting File ID').first().json['email-1'],\n      name:$('Getting File ID').first().json['name-1'] ,\n      role:$('Getting File ID').first().json.role ,\n      classification: result.classification,\n      score : result.score,\n      summary: result.summary,\n      strengths: result.strengths,\n      concerns: result.concerns,\n      interview_recommendation: result.interview_recommendation\n    }\n  });\n}\n\nreturn results;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2896,
+        -64
+      ],
+      "id": "e06b0e21-b742-4065-aceb-f96408dc26d3",
+      "name": "Finishing Touch"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "90a5a647-8607-411f-a26f-d0f82d171557",
+              "leftValue": "={{ $('Append row in sheet').item.json.Role }}",
+              "rightValue": "SWE",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        3280,
+        -64
+      ],
+      "id": "031dfcc9-3488-4f15-9d17-ab36cd9c937e",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1Y8-F6xiod8pCnvd2KCZmnQIu-kLO3yYBMPNZYVUhjV4",
+          "mode": "list",
+          "cachedResultName": "sheet 1",
+          "cachedResultUrl": "YOUR SHEET URL"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "YOUR SHEET URL"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email-1": "={{ $('Append row in sheet').item.json.Email }}",
+            "status": "screened"
+          },
+          "matchingColumns": [
+            "email-1"
+          ],
+          "schema": [
+            {
+              "id": "name-1",
+              "displayName": "name-1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email-1",
+              "displayName": "email-1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Github",
+              "displayName": "Github",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "tech",
+              "displayName": "tech",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "resume",
+              "displayName": "resume",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        3520,
+        -160
+      ],
+      "id": "74c9e4ea-3fb0-4359-a82e-1dc6e23a856d",
+      "name": "Updating SWE",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "JL6cisxc9k2JBBwU",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1kGgX0rKUXhtV7oNl8DKjmd9RjNTJJQvVZp4bW62rZpA",
+          "mode": "list",
+          "cachedResultName": "sheet 2 ",
+          "cachedResultUrl": "YOUR SHEET URL"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "YOUR SHEET URL"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email-2": "={{ $('Append row in sheet').item.json.Email }}",
+            "status": "screened"
+          },
+          "matchingColumns": [
+            "email-2"
+          ],
+          "schema": [
+            {
+              "id": "name-2",
+              "displayName": "name-2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email-2",
+              "displayName": "email-2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "experience",
+              "displayName": "experience",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "cv",
+              "displayName": "cv",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "city",
+              "displayName": "city",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        3520,
+        48
+      ],
+      "id": "c677488d-3700-41b0-b117-bc028528c8c1",
+      "name": "Updating BDM",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "JL6cisxc9k2JBBwU",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        576
+      ],
+      "id": "ecfa80b3-c0fd-409c-8330-25cf190c5a56",
+      "name": "Schedule Trigger1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "c303e2ea-3a22-403c-9463-0fd70e000ce0",
+              "leftValue": "={{ $json.Email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        416,
+        576
+      ],
+      "id": "ae153b45-3bba-4903-b572-63f08af569c8",
+      "name": "If2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        672,
+        768
+      ],
+      "id": "06af2898-cdb6-49cc-865b-c9f5032fd933",
+      "name": "No Operation, do nothing1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.Classification }}",
+                    "rightValue": "strong",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "fc0e8f27-5a2e-4275-899b-dc69f8fab822"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "9a751134-34f4-4c7d-a3bb-9167e88af86b",
+                    "leftValue": "={{ $json.Classification }}",
+                    "rightValue": "average",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "4e46d097-44c3-40c9-8b1f-b2f8c44193b6",
+                    "leftValue": "={{ $json.Classification }}",
+                    "rightValue": "weak",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        672,
+        544
+      ],
+      "id": "5760286d-2016-4079-a228-00dc5708d814",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "=Interview Invitation – {{ $json.Role }} at Trilles AI",
+        "message": "=<p>Dear {{ $json.Name }},</p>  <p>We are pleased to inform you that after reviewing  your application for the <b>{{ $json.Role }}</b> position  at Trilles AI, we would like to invite you for an interview.</p>  <p>Our team was impressed with your profile and looks  forward to speaking with you.</p>  <p>You will receive a calendar invitation shortly with  the meeting details.</p>  <p>Best regards,<br> Trilles AI Hiring Team</p>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1024,
+        384
+      ],
+      "id": "f5247c96-5d20-45ad-b52d-bbfc3a2e0133",
+      "name": "Send a message",
+      "webhookId": "36d71395-6d25-4dd8-8218-3ce3fb7b7f89",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "KwMxeHVTZ1QpHoVf",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "hiringmanager@trillesai.com",
+        "subject": "=Manual Review Needed: {{ $json.Name }} – {{ $json.Role }}",
+        "message": "=<p>Hi Hiring Manager,</p>\n\n<p>The following candidate requires your manual review:</p>\n\n<table>\n  <tr><td><b>Name:</b></td><td>{{ $json.Name }}</td></tr>\n  <tr><td><b>Role:</b></td><td>{{ $json.Role }}</td></tr>\n  <tr><td><b>Score:</b></td><td>{{ $json.Score }}</td></tr>\n  <tr><td><b>Summary:</b></td><td>{{ $json.Summary }}</td></tr>\n</table>\n\n<p>Please review and take appropriate action.</p>\n\n<p>Trilles AI Hiring System</p>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1024,
+        560
+      ],
+      "id": "7f840802-7c1b-455b-b8c6-1496dd4d9d52",
+      "name": "Send a message1",
+      "webhookId": "9c953dbb-b5ee-436b-ba2c-7c4c88e26846",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "KwMxeHVTZ1QpHoVf",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "=Your Application to Trilles AI – {{ $json.Role }}",
+        "message": "=<p>Dear {{ $json.Name }},</p>  <p>Thank you for taking the time to apply for the  <b>{{ $json.Role }}</b> position at Trilles AI.</p>  <p>After carefully reviewing your application, we have  decided to move forward with other candidates whose  experience more closely matches our current needs.</p>  <p>We truly appreciate your interest in Trilles AI and  encourage you to apply again in the future as new  opportunities arise.</p>  <p>We wish you the very best in your career journey.</p>  <p>Warm regards,<br> Trilles AI Hiring Team</p>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1024,
+        752
+      ],
+      "id": "e09323e4-6b04-46cd-b6c9-242f30814937",
+      "name": "Send a message2",
+      "webhookId": "57232cdf-c85e-4c7e-b6d4-9bd62eb1463d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "KwMxeHVTZ1QpHoVf",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "zaeemnadeem1818@gmail.com",
+          "mode": "list",
+          "cachedResultName": "zaeemnadeem1818@gmail.com"
+        },
+        "start": "={{ $now.plus(3, 'days').toISO() }}",
+        "end": "={{ $now.plus(3, 'days').plus(1, 'hours').toISO() }}",
+        "additionalFields": {
+          "attendees": [
+            "={{ $('Switch').item.json.Email }}"
+          ],
+          "description": "=Interview for {{ $('Switch').item.json.Role }} position"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        1232,
+        384
+      ],
+      "id": "65a9fed0-00f4-449d-b48a-5b3b56d17ac9",
+      "name": "Create an event",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "mLqqrzGn3aPPBqJX",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1456,
+        544
+      ],
+      "id": "1ab196b3-1ca2-418a-9ea7-6960bb8ac4e3",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1456,
+        -80
+      ],
+      "id": "735f2bcd-675b-4bee-9fe3-efdc7c85a028",
+      "name": "Merge2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "90f69f1e-b09d-49e6-8594-096e4164da9b",
+              "leftValue": "={{ $json.Status }}",
+              "rightValue": "screened",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1648,
+        -80
+      ],
+      "id": "86681102-1318-4040-a49a-25c6d38838cb",
+      "name": "If3"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1888,
+        -256
+      ],
+      "id": "ac4129a1-cf17-4f7e-aab6-911a54d1ee4d",
+      "name": "No Operation, do nothing2"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1vmjcmlSJN4jvzmBZHCZEBuO7E7cArnWY6D9iZIiRoYQ",
+          "mode": "list",
+          "cachedResultName": "Db",
+          "cachedResultUrl": "YOUR SHEET URL"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "YOUR SHEET URL"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Email",
+              "lookupValue": "={{ $json.Email }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1264,
+        -224
+      ],
+      "id": "e77a8038-ef4f-45ae-8d97-589a368734e0",
+      "name": "Email Checking",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "JL6cisxc9k2JBBwU",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1vmjcmlSJN4jvzmBZHCZEBuO7E7cArnWY6D9iZIiRoYQ",
+          "mode": "list",
+          "cachedResultName": "Db",
+          "cachedResultUrl": "YOUR SHEET URL"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "YOUR SHEET URL"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Status",
+              "lookupValue": "screened"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        576
+      ],
+      "id": "d37b49aa-afd9-4c24-bed6-b7083808025f",
+      "name": "Db",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "JL6cisxc9k2JBBwU",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1vmjcmlSJN4jvzmBZHCZEBuO7E7cArnWY6D9iZIiRoYQ",
+          "mode": "list",
+          "cachedResultName": "Db",
+          "cachedResultUrl": "YOUR SHEET URL"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "YOUR SHEET URL"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Email": "={{ $('Switch').item.json.Email }}",
+            "Status": "emailed"
+          },
+          "matchingColumns": [
+            "Email"
+          ],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Resume",
+              "displayName": "Resume",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Role",
+              "displayName": "Role",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Github",
+              "displayName": "Github",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tech",
+              "displayName": "Tech",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Experience",
+              "displayName": "Experience",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "City",
+              "displayName": "City",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Strengths",
+              "displayName": "Strengths",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Concerns",
+              "displayName": "Concerns",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Classification",
+              "displayName": "Classification",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Score",
+              "displayName": "Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Interview_recommendation",
+              "displayName": "Interview_recommendation",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1664,
+        560
+      ],
+      "id": "3f98e683-af4f-4a6e-abce-744a8335dd52",
+      "name": "updating status",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "JL6cisxc9k2JBBwU",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "SWE sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "BDM sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Managing db",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Getting File ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Plain text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SWE role": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BDM role": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "SWE sheet": {
+      "main": [
+        [
+          {
+            "node": "SWE role",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BDM sheet": {
+      "main": [
+        [
+          {
+            "node": "BDM role",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Managing db": {
+      "main": [
+        [
+          {
+            "node": "Email Checking",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Getting File ID": {
+      "main": [
+        [
+          {
+            "node": "Downloading file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Downloading file": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Plain text": {
+      "main": [
+        [
+          {
+            "node": "AI Screening",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Screening": {
+      "main": [
+        [
+          {
+            "node": "Finishing Touch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Finishing Touch": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Updating SWE",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Updating BDM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Db",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Create an event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create an event": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message1": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Send a message2": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "updating status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Checking": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Db": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "168a3275-fc71-4360-92d3-a8ce0d035416",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "076fefcef79b8d32ae149cb577f48bec71db6cf718393bf35fedba62c88cc26d"
+  },
+  "id": "vhIvKzjGwuF5t2ZD",
+  "tags": []
+}
